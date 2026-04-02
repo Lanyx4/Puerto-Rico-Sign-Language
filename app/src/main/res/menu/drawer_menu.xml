@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="Sobre Nosotros"
+            android:textStyle="bold"
+            android:textSize="40sp"/>
+
+        <item
+            android:id="@+id/nav_dictionary"
+            android:icon="@android:drawable/ic_menu_sort_alphabetically"
+            android:title="Diccionario"
+            android:textStyle="bold"
+            android:textSize="40sp" />
+
+    </group>
+</menu>

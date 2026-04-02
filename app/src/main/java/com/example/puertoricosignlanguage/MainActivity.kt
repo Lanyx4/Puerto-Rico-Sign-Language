@@ -13,6 +13,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -20,8 +21,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
 
 import java.util.Locale
 
@@ -32,6 +36,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var gifImageView: ImageView
     private lateinit var searchTermTextView: TextView
     private lateinit var voiceButton: FloatingActionButton
+
+    // Melanie: Variables para el menú lateral
+    private lateinit var drawerLayout: DrawerLayout
     private val availableGifs = mutableMapOf<String, Int>()
 
     private fun AutoCompleteTextView.hideKeyboard() {
@@ -78,6 +85,34 @@ class MainActivity : AppCompatActivity() {
         gifImageView = findViewById(R.id.gifImageView)
         searchTermTextView = findViewById(R.id.searchTermTextView)
         voiceButton = findViewById(R.id.voiceButton)
+
+        // Melanie: Inicializar menú lateral
+        drawerLayout = findViewById(R.id.drawer_layout)
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        val btnOpenDrawer: ImageButton = findViewById(R.id.btn_open_drawer)
+
+        // Abrirá el menú al tocar el botón
+        btnOpenDrawer.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        // Configurar los clics de las opciones del menú
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_about_us -> {
+                    val intent = Intent(this, AboutUsActivity::class.java)
+                    startActivity(intent)
+                }
+
+                R.id.nav_dictionary -> {
+                    val intent = Intent(this, DictionaryActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            drawerLayout.closeDrawers()
+            true
+        }
+        // Melanie: Termina el programa de menú
 
         // Load all available GIFs from drawable folder
         loadAvailableGifs()

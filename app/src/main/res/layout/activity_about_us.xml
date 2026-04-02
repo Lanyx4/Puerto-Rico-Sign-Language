@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Melanie-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sobre Nosotros"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/sagrado_blanco"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Somos un grupo de estudiantes de Ciencias de Cómputos de la Universidad
+            del Sagrado Corazón, apasionados por el cambio. Nos motiva transformar la tecnología en
+            herramientas de impacto social, ya que creemos firmemente que la tecnología debe servir
+            para algo más grande: conectar corazones.
+            \nCon este propósito,hemos desarrollado una aplicación dedicada a la Lengua de Señas
+            Puertorriqueña (LSP), para promover la inclusión y la accesibilidad en cada rincón de
+            nuestra comunidad. \nNuestra meta es que el conocimiento académico se convierta en un
+            puente que conecte a las personas y deje una huella positiva en nuestra isla. Queremos
+            que nuestro aprendizaje no se quede en un examen, sino que se convierta en una solución
+            real que mejore vidas y transforme a Puerto Rico."
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="8dp"
+            android:background="@drawable/search_background"
+            android:padding="20dp" />
+
+    </LinearLayout>
+</ScrollView>
