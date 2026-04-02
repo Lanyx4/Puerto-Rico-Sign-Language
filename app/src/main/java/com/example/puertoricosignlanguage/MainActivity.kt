@@ -104,10 +104,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
 
-                R.id.nav_dictionary -> {
-                    val intent = Intent(this, DictionaryActivity::class.java)
-                    startActivity(intent)
-                }
+              //  R.id.nav_dictionary -> {
+            //        val intent = Intent(this, DictionaryActivity::class.java)
+             //       startActivity(intent)
+              //  }
             }
             drawerLayout.closeDrawers()
             true
