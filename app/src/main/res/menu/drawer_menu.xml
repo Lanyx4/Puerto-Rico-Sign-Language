@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--Menú lateral-->
+    <!--Melanie-->
+    <group
+        android:checkableBehavior="single">
 
-    <group android:checkableBehavior="single">
+        <!--Item para ir a la página principal-->
+        <item
+            android:id="@+id/nav_home"
+            android:title="Inicio" />
 
+        <!--Item para ir a la página Sobre Nostros-->
         <item
             android:id="@+id/nav_about_us"
-            android:icon="@android:drawable/ic_menu_info_details"
-            android:title="Sobre Nosotros"
-            android:textStyle="bold"
-            android:textSize="40sp"/>
+            android:title="Sobre Nosotros" />
 
+        <!--Item para ir a la página Diccionario-->
+        <!--
         <item
             android:id="@+id/nav_dictionary"
-            android:icon="@android:drawable/ic_menu_sort_alphabetically"
-            android:title="Diccionario"
-            android:textStyle="bold"
-            android:textSize="40sp" />
-
+            android:title="Diccionario" /> -->
     </group>
 </menu>

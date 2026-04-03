@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--Melanie-->
-<ScrollView
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutUsActivity">
+    tools:context=".AboutUsActivity" >
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/bannerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="-24dp">
+
+            <ImageButton
+                android:id="@+id/btn_open_drawer"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center_vertical"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/logoImage"
+                android:layout_width="240dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sagrado_blanco" />
+        </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,37 +56,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sobre Nosotros"
-            android:textSize="32sp"
+            android:textSize="35sp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="50dp"/>
 
-        <ImageView
+        <!--<ImageView
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:src="@drawable/sagrado_blanco"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp" /> -->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Somos un grupo de estudiantes de Ciencias de Cómputos de la Universidad
-            del Sagrado Corazón, apasionados por el cambio. Nos motiva transformar la tecnología en
-            herramientas de impacto social, ya que creemos firmemente que la tecnología debe servir
-            para algo más grande: conectar corazones.
-            \nCon este propósito,hemos desarrollado una aplicación dedicada a la Lengua de Señas
-            Puertorriqueña (LSP), para promover la inclusión y la accesibilidad en cada rincón de
-            nuestra comunidad. \nNuestra meta es que el conocimiento académico se convierta en un
-            puente que conecte a las personas y deje una huella positiva en nuestra isla. Queremos
-            que nuestro aprendizaje no se quede en un examen, sino que se convierta en una solución
-            real que mejore vidas y transforme a Puerto Rico."
-            android:textSize="20sp"
+            android:text="Somos un grupo de estudiantes de Ciencias de Cómputos de la Universidad del Sagrado Corazón, apasionados por el cambio. Nos motiva transformar la tecnología en herramientas de impacto social, ya que creemos firmemente que la tecnología debe servir para algo más grande: conectar corazones.
+            \n\nCon este propósito, hemos desarrollado una aplicación dedicada a la Lengua de Señas Puertorriqueña (LSP), para promover la inclusión y la accesibilidad en cada rincón de nuestra comunidad.
+            \n\nNuestra meta es que el conocimiento académico se convierta en un puente que conecte a las personas y deje una huella positiva en nuestra isla. Queremos que nuestro aprendizaje no se quede en un examen, sino que se convierta en una solución real que mejore vidas y transforme a Puerto Rico."
+            android:textSize="25sp"
             android:textColor="@color/black"
             android:lineSpacingExtra="8dp"
             android:background="@drawable/search_background"
             android:padding="20dp" />
 
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:layout_marginTop="50dp"
+        android:elevation="8dp"
+        app:menu="@menu/drawer_menu"
+        app:itemActiveIndicatorStyle="@null"
+        app:itemBackground="@drawable/nav_item_background" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -91,6 +91,8 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
         val btnOpenDrawer: ImageButton = findViewById(R.id.btn_open_drawer)
 
+        navView.setCheckedItem(R.id.nav_home)
+
         // Abrirá el menú al tocar el botón
         btnOpenDrawer.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
@@ -99,11 +101,17 @@ class MainActivity : AppCompatActivity() {
         // Configurar los clics de las opciones del menú
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
+                R.id.nav_home -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                }
+
+
                 R.id.nav_about_us -> {
                     val intent = Intent(this, AboutUsActivity::class.java)
                     startActivity(intent)
                 }
 
+                // Menú del diccionario
               //  R.id.nav_dictionary -> {
             //        val intent = Intent(this, DictionaryActivity::class.java)
              //       startActivity(intent)
@@ -368,4 +376,5 @@ class MainActivity : AppCompatActivity() {
                 .append(word.substring(1)).append(" ")
         }
         return capitalized.toString().trim()
-    }}
+    }
+}

@@ -33,11 +33,14 @@
             android:background="@color/colorPrimary"
             app:layout_constraintTop_toTopOf="parent">
 
+        <!--Melanie-->
+
             <ImageButton
                 android:id="@+id/btn_open_drawer"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
+                android:layout_gravity="center_vertical"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@android:drawable/ic_menu_sort_by_size"
                 app:tint="@color/white" />
@@ -133,12 +136,16 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+<!--Melanie-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_gravity="start"
-        app:menu="@menu/drawer_menu" />
+        android:elevation="8dp"
+        app:menu="@menu/drawer_menu"
+        app:itemActiveIndicatorStyle="@null"
+        app:itemBackground="@drawable/nav_item_background"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
