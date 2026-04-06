@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Melanie:
+Este archivo se encarga de hacer el diseño del menú lateral.
+En cuestión del color y forma-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+            <shape>
+                <solid android:color="#FFC9C9" />
+                <corners android:radius="100dp" />
+            </shape>
+    </item>
+    <item android:drawable="@android:color/transparent" />
+</selector>
