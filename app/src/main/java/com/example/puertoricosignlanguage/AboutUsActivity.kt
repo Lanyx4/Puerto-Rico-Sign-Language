@@ -44,7 +44,7 @@ class AboutUsActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_about_us -> {
-                            val intent = Intent(this, AboutUsActivity::class.java)
+                    val intent = Intent(this, AboutUsActivity::class.java)
                 }
 
                 // Menú del diccionario
