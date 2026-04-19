@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, MainActivity::class.java)
                 }
 
-
+                // "Botón" de las opciones del menú que te lleva a la activity About Us
                 R.id.nav_about_us -> {
                     val intent = Intent(this, AboutUsActivity::class.java)
                     startActivity(intent)
