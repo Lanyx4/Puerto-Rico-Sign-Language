@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, MainActivity::class.java)
                 }
 
-
+                // "Botón" de las opciones del menú que te lleva a la activity About Us
                 R.id.nav_about_us -> {
                     val intent = Intent(this, AboutUsActivity::class.java)
                     startActivity(intent)
@@ -352,8 +352,31 @@ class MainActivity : AppCompatActivity() {
     private fun denormalizeString(str: String?): String {
         var word = str ?: return ""
 
-        // Replace underscores with spaces
-        word = word.replace("_", " ")
+        // Replace words back to their special characters variant
+        word = word
+            .replace("_", " ")
+        /*A*/.replace("alegria", "alegría")
+        /*B*/.replace("bayamon", "bayamón").replace("bebe", "bebé")
+        /*C*/.replace("cafe", "café").replace("catano", "cataño")
+            .replace("como", "cómo").replace("cooperacion", "cooperación")
+            .replace("correo electronico", "correo electrónico").replace("cunada", "cuñada")
+            .replace("cunado", "cuñado")
+        /*D*/.replace("discusion", "discusión").replace("donde", "dónde")
+        /*E*/.replace("el", "él").replace("ensenar", "enseñar")
+        /*F*/.replace("fotografo", "fotógrafo").replace("frustracion", "frustración")
+        /*L*/.replace("limon", "limón")
+        /*M*/.replace("mama", "mamá").replace("mayaguez", "mayagüez")
+            .replace("mecanico", "mecánico")
+        /*P*/.replace("papa", "papá").replace("pelicula", "película")
+            .replace("perdon", "perdón").replace("periodico", "periódico")
+            .replace("policia", "policía").replace("por que", "por qué")
+            .replace("presion", "presión")
+        /*Q*/.replace("que", "qué").replace("quien", "quién")
+        /*R*/.replace("rincon", "rincón")
+        /*S*/.replace("si", "sí").replace("sonar", "soñar")
+        /*T*/.replace("telefono", "teléfono").replace("television", "televisión")
+            .replace("tia", "tía").replace("tio", "tío")
+            .replace("tu", "tú")
 
         // Capitalize each wordus
         return capitalize(word) ?: word
