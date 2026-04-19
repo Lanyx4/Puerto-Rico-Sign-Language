@@ -16,9 +16,9 @@
             android:title="Sobre Nosotros" />
 
         <!--Item para ir a la página Diccionario-->
-        <!--
+
         <item
             android:id="@+id/nav_dictionary"
-            android:title="Diccionario" /> -->
+            android:title="Diccionario" />
     </group>
 </menu>
