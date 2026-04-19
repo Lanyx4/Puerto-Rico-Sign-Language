@@ -48,6 +48,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.android.material:material:1.11.0")
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.29")
 
 // Glide dependencies
     implementation(libs.glide)

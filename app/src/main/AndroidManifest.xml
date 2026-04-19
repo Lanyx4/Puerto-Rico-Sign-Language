@@ -15,6 +15,9 @@
         android:theme="@style/Theme.PuertoRicoSignLanguage"
         tools:targetApi="31">
         <activity
+            android:name=".DictionaryActivity"
+            android:exported="false" />
+        <activity
             android:name=".AboutUsActivity"
             android:exported="false" />
         <activity
