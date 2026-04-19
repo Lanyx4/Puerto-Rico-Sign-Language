@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--Melanie--> <!--Para crear la barra de menú. Nuevo "padre"-->
+<!--Melanie--> <!--Para crear la barra de menú.
+Ahora este es el nuevo "padre"-->
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -137,6 +138,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 <!--Melanie-->
+    <!-- Navigation drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

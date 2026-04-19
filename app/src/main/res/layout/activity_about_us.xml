@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+    <!-- El frame de arriba, donde se encuentra el menú y el logo de sagrado-->
         <FrameLayout
             android:id="@+id/bannerContainer"
             android:layout_width="match_parent"
@@ -26,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:padding="-24dp">
 
+            <!-- imagen del botón de menú-->
             <ImageButton
                 android:id="@+id/btn_open_drawer"
                 android:layout_width="48dp"
@@ -36,6 +38,7 @@
                 android:src="@android:drawable/ic_menu_sort_by_size"
                 app:tint="@color/white" />
 
+            <!-- El logo del frame de arriba-->
             <ImageView
                 android:id="@+id/logoImage"
                 android:layout_width="240dp"
@@ -52,6 +55,7 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- El título Sobre Nosotros-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,6 +74,7 @@
             android:src="@drawable/sagrado_blanco"
             android:layout_marginBottom="20dp" /> -->
 
+        <!-- El contenido de la página de Sobre Nosotros-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,6 +91,7 @@
     </LinearLayout>
 </ScrollView>
 
+    <!-- Navigation drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
