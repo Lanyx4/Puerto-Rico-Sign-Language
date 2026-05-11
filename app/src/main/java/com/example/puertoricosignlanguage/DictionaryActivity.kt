@@ -262,7 +262,33 @@ class DictionaryActivity : AppCompatActivity() {
             "trece",
             "semanal",
             "septiembre",
-            "uno"
+            "uno",
+            "nieta",
+            "nieto",
+            "novio",
+            "peligroso",
+            "prohibido",
+            "permiso",
+            "buen_provecho",
+            "pena",
+            "bano",
+            "emergencia",
+            "jabon",
+            "paz",
+            "oficina",
+            "soy",
+            "hospital",
+            "estas_bien",
+            "cena",
+            "desayuno",
+            "cien",
+            "frio",
+            "treinta",
+            "cuarenta",
+            "cincuenta",
+            "sesenta",
+            "ochenta",
+            "noventa"
         )
 
 
@@ -364,13 +390,20 @@ class DictionaryActivity : AppCompatActivity() {
         }
     }
     private fun showGifDialog(word: String) {
-        // Full‑screen dialog
         val dialog = android.app.Dialog(
             this,
             android.R.style.Theme_Black_NoTitleBar_Fullscreen
         )
 
-        // Create the GIF view
+        // Root container (FrameLayout so we can overlay the X button)
+        val rootFrame = android.widget.FrameLayout(this)
+        rootFrame.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        rootFrame.setBackgroundColor(android.graphics.Color.BLACK)
+
+        // GIF view
         val gifView = pl.droidsonroids.gif.GifImageView(this)
         gifView.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -391,7 +424,28 @@ class DictionaryActivity : AppCompatActivity() {
             pl.droidsonroids.gif.GifDrawable(resources, resId)
         )
 
-        dialog.setContentView(gifView)
+        // X close button
+        val closeButton = android.widget.ImageButton(this)
+        val sizePx = (48 * resources.displayMetrics.density).toInt()
+        val marginPx = (16 * resources.displayMetrics.density).toInt()
+        val closeParams = android.widget.FrameLayout.LayoutParams(sizePx, sizePx)
+        closeParams.gravity = android.view.Gravity.TOP or android.view.Gravity.END
+        closeParams.topMargin = marginPx
+        closeParams.rightMargin = marginPx
+        closeButton.layoutParams = closeParams
+        closeButton.setImageDrawable(
+            androidx.core.content.ContextCompat.getDrawable(
+                this, android.R.drawable.ic_menu_close_clear_cancel
+            )
+        )
+        closeButton.setBackgroundResource(android.R.drawable.btn_default)
+        closeButton.contentDescription = "Close"
+        closeButton.setOnClickListener { dialog.dismiss() }
+
+        rootFrame.addView(gifView)
+        rootFrame.addView(closeButton)
+
+        dialog.setContentView(rootFrame)
         dialog.show()
     }
 
