@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Somos un grupo de estudiantes de Ciencias de Cómputos de la Universidad del Sagrado Corazón, apasionados por el cambio. Nos motiva transformar la tecnología en herramientas de impacto social, ya que creemos firmemente que la tecnología debe servir para algo más grande: conectar corazones.
-            \n\nCon este propósito, hemos desarrollado una aplicación dedicada a la Lengua de Señas Puertorriqueña (LSP), para promover la inclusión y la accesibilidad en cada rincón de nuestra comunidad.
+            \n\nCon este propósito, hemos desarrollado una aplicación dedicada a \t Puerto Rico Sign Language\t (PRSL), para promover la inclusión y la accesibilidad en cada rincón de nuestra comunidad.
             \n\nNuestra meta es que el conocimiento académico se convierta en un puente que conecte a las personas y deje una huella positiva en nuestra isla. Queremos que nuestro aprendizaje no se quede en un examen, sino que se convierta en una solución real que mejore vidas y transforme a Puerto Rico."
             android:textSize="25sp"
             android:textColor="@color/black"
