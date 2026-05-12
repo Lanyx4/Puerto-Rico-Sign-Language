@@ -41,8 +41,66 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private val availableGifs = mutableMapOf<String, Int>()
 
+
+    //Adrian
+    //This is where the library of fixed words is located.
+    //It is read-only Map where all of our keys and values are strings.
+    private val spellingDictionary = mapOf(
+        "adios" to "adiós",
+        "alegria" to "alegría",
+        "ayudame" to "ayúdame",
+        "bano" to "baño",
+        "bayamon" to "bayamón",
+        "bebe" to "bebé",
+        "cafe" to "café",
+        "catano" to "cataño",
+        "como" to "cómo",
+        "cooperacion" to "cooperación",
+        "cual" to "cuál",
+        "cuando" to "cuándo",
+        "cuanto" to "cuánto",
+        "cunada" to "cuñada",
+        "cunado" to "cuñado",
+        "dejalo" to "déjalo",
+        "dia" to "día",
+        "discusion" to "discusión",
+        "donde" to "dónde",
+        "el" to "él",
+        "ensenar" to "enseñar",
+        "fotografo" to "fotógrafo",
+        "frio" to "frío",
+        "frustracion" to "frustración",
+        "jabon" to "jabón",
+        "limon" to "limón",
+        "mama" to "mamá",
+        "manana" to "mañana",
+        "mayaguez" to "mayagüez",
+        "mecanico" to "mecánico",
+        "miercoles" to "miércoles",
+        "papa" to "papá",
+        "pelicula" to "película",
+        "perdon" to "perdón",
+        "periodico" to "periódico",
+        "platano" to "plátano",
+        "policia" to "policía",
+        "presion" to "presión",
+        "que" to "qué",
+        "quien" to "quién",
+        "rincon" to "rincón",
+        "sabado" to "sábado",
+        "senas" to "señas",
+        "si" to "sí",
+        "sonar" to "soñar",
+        "telefono" to "teléfono",
+        "television" to "televisión",
+        "tia" to "tía",
+        "tio" to "tío",
+        "tu" to "tú",
+    )
+
     private fun AutoCompleteTextView.hideKeyboard() {
-        val imm = context.getSystemService(INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+        val imm =
+            context.getSystemService(INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
 
@@ -348,38 +406,48 @@ class MainActivity : AppCompatActivity() {
         return word
     }
 
+    //Adrian
     // New method to convert normalized names back to display names
     private fun denormalizeString(str: String?): String {
+        //Checks if the input string is null.
+        //If it is null then it returns an empty string, otherwise it is assigned the variable word.
         var word = str ?: return ""
+        //Replaces every instance of an underscore "_" with a space " "
+        word = word.replace("_", " ")
 
-        // Replace words back to their special characters variant
-        word = word
-            .replace("_", " ")
-        /*A*/.replace("alegria", "alegría")
-        /*B*/.replace("bayamon", "bayamón").replace("bebe", "bebé")
-        /*C*/.replace("cafe", "café").replace("catano", "cataño")
-            .replace("como", "cómo").replace("cooperacion", "cooperación")
-            .replace("correo electronico", "correo electrónico").replace("cunada", "cuñada")
-            .replace("cunado", "cuñado")
-        /*D*/.replace("discusion", "discusión").replace("donde", "dónde")
-        /*E*/.replace("el", "él").replace("ensenar", "enseñar")
-        /*F*/.replace("fotografo", "fotógrafo").replace("frustracion", "frustración")
-        /*L*/.replace("limon", "limón")
-        /*M*/.replace("mama", "mamá").replace("mayaguez", "mayagüez")
-            .replace("mecanico", "mecánico")
-        /*P*/.replace("papa", "papá").replace("pelicula", "película")
-            .replace("perdon", "perdón").replace("periodico", "periódico")
-            .replace("policia", "policía").replace("por que", "por qué")
-            .replace("presion", "presión")
-        /*Q*/.replace("que", "qué").replace("quien", "quién")
-        /*R*/.replace("rincon", "rincón")
-        /*S*/.replace("si", "sí").replace("sonar", "soñar")
-        /*T*/.replace("telefono", "teléfono").replace("television", "televisión")
-            .replace("tia", "tía").replace("tio", "tío")
-            .replace("tu", "tú")
+        //Splits the word string into a list of individual strings separated by a space.
+        val wordList = word.split(" ")
+        //Fixed Words are stored in a mutable list.
+        val fixedWords = mutableListOf<String>()
 
-        // Capitalize each wordus
-        return capitalize(word) ?: word
+        //Loop through every item in wordList, with each item being temporarily assigned to currentWord.
+        for (currentWord in wordList) {
+            //Checks if the current word is inside the map. If it is found, then that value is assigned.
+            // Otherwise, just keep the original word. The processed word is added to the fixedWords list.
+            val correctedWord = spellingDictionary[currentWord] ?: currentWord
+            fixedWords.add(correctedWord)
+        }
+
+        //Takes the fixedWords list and combines it back into a single string, with each word separated by a space.
+        val result = fixedWords.joinToString(" ")
+        //Then finalResult is assigned the result.
+        val finalResult = result
+            //Due to the logic of the list, phrases are directly replaced.
+            .replace("a donde vas", "a dónde vas")
+            .replace("a que hora", "a qué hora")
+            .replace("buenos dias", "buenos días")
+            .replace("como estas", "cómo estás")
+            .replace("como te llamas", "cómo te llamas")
+            .replace("correo electronico", "correo electrónico")
+            .replace("esta bien", "está bien")
+            .replace("me olvide", "me olvidé")
+            .replace("no se", "no sé")
+            .replace("por que","por qué")
+            .replace("que paso", "qué paso")
+
+        //Capitalizes the final results of strings. Otherwise, leave as is.
+        return capitalize(finalResult) ?: finalResult
+
     }
 
     // Juan Colon y Victor
