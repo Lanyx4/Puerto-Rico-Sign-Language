@@ -18,7 +18,7 @@ class AboutUsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_us)
 
-        // Inicializar el DrawerLayout
+        // Inicializar el DrawerLayout que está en activity_main.xml
         drawerLayout = findViewById(R.id.drawer_layout)
 
         // Declarando el nav home
@@ -32,30 +32,24 @@ class AboutUsActivity : AppCompatActivity() {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
+        // La navegación de menú
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_home -> {
-                    val intent = Intent(this, MainActivity::class.java)
 
-                    // Esto evitará que se abran muchas capas de la misma ventana
-                    // Nota: Con el flag hace que se sombree Sobre Nosotros
-                  //  intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                    startActivity(intent)
+                // Menú para ir a la página principal
+                R.id.nav_home -> {
+                    startActivity(Intent(this, MainActivity::class.java))
                 }
 
+                // Menú para misma actividad (About Us) en la que estamos
                 R.id.nav_about_us -> {
                     Intent(this, AboutUsActivity::class.java)
                 }
 
+                // Menú para ir a la página del Diccionario
                 R.id.nav_dictionary -> {
                     startActivity(Intent(this, DictionaryActivity::class.java))
                 }
-
-                // Menú del diccionario
-            //  R.id.nav_dictionary -> {
-            //        val intent = Intent(this, DictionaryActivity::class.java)
-            //       startActivity(intent)
-            //  }
             }
             drawerLayout.closeDrawers()
             true

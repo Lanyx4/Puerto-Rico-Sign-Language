@@ -37,7 +37,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var searchTermTextView: TextView
     private lateinit var voiceButton: FloatingActionButton
 
-    // Melanie: Variables para el menú lateral
+    // Melanie
+    // Variable para el menú lateral:
+    // DrawerLayout que está en activity_main.xml
     private lateinit var drawerLayout: DrawerLayout
     private val availableGifs = mutableMapOf<String, Int>()
 
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         "fotografo" to "fotógrafo",
         "frio" to "frío",
         "frustracion" to "frustración",
+        "interprete" to "intérprete",
         "jabon" to "jabón",
         "limon" to "limón",
         "mama" to "mamá",
@@ -443,7 +446,7 @@ class MainActivity : AppCompatActivity() {
             .replace("me olvide", "me olvidé")
             .replace("no se", "no sé")
             .replace("por que","por qué")
-            .replace("que paso", "qué paso")
+            .replace("que paso", "qué pasó")
 
         //Capitalizes the final results of strings. Otherwise, leave as is.
         return capitalize(finalResult) ?: finalResult
