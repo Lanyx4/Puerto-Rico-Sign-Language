@@ -3,6 +3,5 @@
     <style name="Base.Theme.PuertoRicoSignLanguage" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="background">@color/black</item>
     </style>
 </resources>
