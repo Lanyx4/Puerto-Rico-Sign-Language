@@ -251,6 +251,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /*
+        La siguiente función es para cargar todos los recursos que terminan en .gif
+        de la carpeta Drawable que se almacenará en "availableGifs" signandole un ID.
+     */
     private fun loadAvailableGifs() {
         try {
             val drawableFields = R.drawable::class.java.fields
