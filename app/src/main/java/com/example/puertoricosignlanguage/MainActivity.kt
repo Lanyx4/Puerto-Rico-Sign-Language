@@ -18,6 +18,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -284,6 +285,7 @@ class MainActivity : AppCompatActivity() {
     // Angel y Juan Jimenez
     private fun checkMicrophonePermission() {
         when {
+            // Si el permiso ya fue aceptado anteriormente, se activa el micrófono directamente
             ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.RECORD_AUDIO
@@ -294,6 +296,13 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.shouldShowRequestPermissionRationale(
                 this,
                 Manifest.permission.RECORD_AUDIO
+            /* Melanie: Cambié el Toast por AlerteDialog. De esta manera, el usuario
+            puede ver el mensaje del sistema, y no desaparezca como lo hacia con Toast.
+
+            Ya que el Toast es un mensaje que aparece en la pantalla por unos segundos
+            y desaparece solo, que no requiere ninguna acción del usuario.
+            Lo que estaba antes:
+
             ) -> {
                 Toast.makeText(
                     this,
@@ -303,8 +312,24 @@ class MainActivity : AppCompatActivity() {
                 requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
             }
 
-            else -> {
-                requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+            */
+                // Si el usuario denegó el permiso antes, mostrará el diálogo que lo lleva a los settings.
+            ) -> {
+                AlertDialog.Builder(this)
+                AlertDialog.Builder(this)
+                    .setTitle("Permiso bloqueado")
+                    .setMessage("Activa el micrófono desde ajustes del dispositivo")
+                    .setPositiveButton("Ir a Ajustes") { _, _ ->
+                        val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        val uri = android.net.Uri.fromParts("package", packageName, null)
+                        intent.data = uri
+                        startActivity(intent)
+                    }
+                    .setNegativeButton("Cancelar", null)
+                    .show()
+                // Primera vez que se solicita el permiso.
+                } else -> {
+                    requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
             }
         }
     }
