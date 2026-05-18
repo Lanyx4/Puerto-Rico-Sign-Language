@@ -436,7 +436,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Melanie
-        // Si no encontró el número, intanta con el diccionario de números.
+        // Si no encontró el gif, intanta comparar (lo escrito por el usuario)
+        // con el diccionario de números (numberDictionary).
         if (resourceId == null) {
             val numberMatch = numberDictionary[searchTerm]
             if (numberMatch != null) {
