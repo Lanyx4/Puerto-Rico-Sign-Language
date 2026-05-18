@@ -320,8 +320,11 @@ class MainActivity : AppCompatActivity() {
                     .setTitle("Permiso bloqueado")
                     .setMessage("Activa el micrófono desde ajustes del dispositivo")
                     .setPositiveButton("Ir a Ajustes") { _, _ ->
+                        // Crea el intent para abrir la pantalla de detalles de la app en Settings.
                         val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        // Crea la dirección de la app usando el packageName
                         val uri = android.net.Uri.fromParts("package", packageName, null)
+                        // Le asigna esa dirección al intent para que sepa qué app abrir
                         intent.data = uri
                         startActivity(intent)
                     }
