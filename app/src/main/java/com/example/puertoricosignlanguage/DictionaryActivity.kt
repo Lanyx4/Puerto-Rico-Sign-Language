@@ -70,7 +70,7 @@ class DictionaryActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val normalizedWords = listOf(
-            "a_qué_hora",
+            "¿A_qué_hora?",
             "abogado",
             "abuela",
             "abuelo",
@@ -95,7 +95,7 @@ class DictionaryActivity : AppCompatActivity() {
             "cocinar",
             "cocinero",
             "comer",
-            "cómo",
+            "¿Cómo?",
             "comparar",
             "compartir",
             "conducir",
@@ -105,8 +105,8 @@ class DictionaryActivity : AppCompatActivity() {
             "correo electrónico",
             "correr",
             "creer",
-            "cuándo",
-            "cuánto",
+            "¿Cuándo?",
+            "¿Cuánto?",
             "cuñada",
             "cuñado",
             "decidir",
@@ -118,7 +118,7 @@ class DictionaryActivity : AppCompatActivity() {
             "discusión",
             "doctor",
             "dolor",
-            "dónde",
+            "¿Dónde?",
             "dorado",
             "dormir",
             "él",
@@ -181,13 +181,13 @@ class DictionaryActivity : AppCompatActivity() {
             "policía",
             "ponce",
             "por_favor",
-            "por_qué",
+            "¿Por_qué?",
             "precio",
             "presión",
             "prima",
             "primo",
             "puerto_rico",
-            "qué",
+            "¿Qué?",
             "recordar",
             "rincón",
             "saber",
@@ -212,7 +212,7 @@ class DictionaryActivity : AppCompatActivity() {
             "vieques",
             "yo",
             "abril",
-            "a_dónde_vas",
+            "¿A_dónde_vas?",
             "buenos_días",
             "buenas_noches",
             "viernes",
@@ -220,9 +220,9 @@ class DictionaryActivity : AppCompatActivity() {
             "ahora",
             "adiós",
             "buenas_tardes",
-            "cómo_estás",
-            "cómo_te_llamas",
-            "cuál",
+            "¿Cómo_estás?",
+            "¿Cómo_te_llamas?",
+            "¿Cuál?",
             "de_nada",
             "cuatro",
             "día",
@@ -255,11 +255,11 @@ class DictionaryActivity : AppCompatActivity() {
             "mensual",
             "once",
             "octubre",
-            "qué pasó",
+            "¿Qué pasó?",
             "sábado",
             "quince",
-            "quieres",
-            "quién",
+            "¿Quieres?",
+            "¿Quién?",
             "seis",
             "tres",
             "trece",
@@ -317,7 +317,9 @@ class DictionaryActivity : AppCompatActivity() {
 
         val displayWords = normalizedWords
             .map { denormalizeString(it) }
-            .sorted()
+            // El sortedWith ordena la versión sin acento de "el", pero muestra
+            // la versión correcta en pantalla "él".
+            .sortedWith(compareBy { normalizeString(it) })
 
         recyclerView.adapter = DictionaryAdapter(displayWords)
     }

@@ -99,7 +99,39 @@ class MainActivity : AppCompatActivity() {
         "television" to "televisión",
         "tia" to "tía",
         "tio" to "tío",
-        "tu" to "tú",
+        "tu" to "tú"
+    )
+
+    // Melanie: Mapa de palabras, pero solo para los números
+    private val numberDictionary = mapOf(
+        "1" to "uno",
+        "2" to "dos",
+        "3" to "tres",
+        "4" to "cuatro",
+        "5" to "cinco",
+        "6" to "seis",
+        "7" to "siete",
+        "8" to "ocho",
+        "9" to "nueve",
+        "10" to "diez",
+        "11" to "once",
+        "12" to "doce",
+        "13" to "trece",
+        "14" to "catorce",
+        "15" to "quince",
+        "16" to "dieciseis",
+        "17" to "diecisiete",
+        "18" to "dieciocho",
+        "19" to "diecinueve",
+        "20" to "veinte",
+        "30" to "treinta",
+        "40" to "cuarenta",
+        "50" to "cincuenta",
+        "60" to "sesenta",
+        "70" to "setenta",
+        "80" to "ochenta",
+        "90" to "noventa",
+        "100" to "cien"
     )
 
     private fun AutoCompleteTextView.hideKeyboard() {
@@ -318,7 +350,7 @@ class MainActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                 AlertDialog.Builder(this)
                     .setTitle("Permiso bloqueado")
-                    .setMessage("Activa el micrófono desde ajustes del dispositivo")
+                    .setMessage("Activa el micrófono desde ajustes del dispositivo.")
                     .setPositiveButton("Ir a Ajustes") { _, _ ->
                         // Crea el intent para abrir la pantalla de detalles de la app en Settings.
                         val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
@@ -390,10 +422,30 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Melanie
+        // Si no encontró el número, intanta con el diccionario de números.
+        if (resourceId == null) {
+            val numberMatch = numberDictionary[searchTerm]
+            if (numberMatch != null) {
+                resourceId = availableGifs[capitalize(numberMatch)]
+            }
+        }
+
         if (resourceId != null) {
-            // Update the search term display (keeping original input for display)
+           /*
+           Lo que estaba antes:
+           // Update the search term display (keeping original input for display)
             searchTermTextView.apply {
                 text = capitalize(searchTerm)
+                visibility = View.VISIBLE
+                }
+                Solo muestra lo que el usuario escribe, por tanto, no sabe la versión corregida.
+            */
+            searchTermTextView.apply {
+                // Busca la versión corregida en spellingDictionary, si no existe, entonces
+                // muestra el original, osea, lo que escribe el usuario.
+                val correctedTerm = denormalizeString(searchTerm.lowercase()) ?: searchTerm
+                text = addQuestionMarks(correctedTerm)
                 visibility = View.VISIBLE
             }
 
@@ -464,21 +516,63 @@ class MainActivity : AppCompatActivity() {
         //Then finalResult is assigned the result.
         val finalResult = result
             //Due to the logic of the list, phrases are directly replaced.
-            .replace("a donde vas", "a dónde vas")
-            .replace("a que hora", "a qué hora")
-            .replace("buenos dias", "buenos días")
-            .replace("como estas", "cómo estás")
-            .replace("como te llamas", "cómo te llamas")
             .replace("correo electronico", "correo electrónico")
             .replace("esta bien", "está bien")
             .replace("me olvide", "me olvidé")
             .replace("no se", "no sé")
-            .replace("por que","por qué")
-            .replace("que paso", "qué pasó")
+            .replace("buenos dias", "buenos días")
+            .replace("a donde vas", "a dónde vas")
+            .replace("a que hora", "a qué hora")
+
+            // Las frases se reemplazan después de que spellingDictionary ya acentuó palabras individuales,
+            // por eso se necesitan dos variantes, con y sin acento previo.
+            .replace("que paso", "qué paso")
+            .replace("qué paso", "qué pasó")
+            .replace("como estas", "cómo estas")
+            .replace("cómo estas", "cómo estás")
 
         //Capitalizes the final results of strings. Otherwise, leave as is.
         return capitalize(finalResult) ?: finalResult
 
+    }
+
+    /*
+    Melanie: Esta es una función para las palabras que
+    llevan signos de interrogación.
+     */
+    private fun addQuestionMarks(str: String): String {
+        // Convierte el texto a minúsculas para comparar
+        // Elimina signos de interrogación existentes, escritos por el usuario,
+        // y espacios antes de comparar
+        val lower = str.lowercase()
+            .replace("¿", "")
+            .replace("?", "")
+            .trim()
+
+        // Evalúa la palabra o frase contra cada caso posible
+        return when {
+            // Pimero se evalúan las frases completas para evitar conflictos, como con:
+            // "dónde", "qué" y "cómo" que son las palabras peligrosas.
+            lower == "a dónde vas" || lower == "a donde vas" -> "¿A Dónde Vas?"
+            lower == "a qué hora" || lower == "a que hora" -> "¿A Qué Hora?"
+            lower == "cómo estás" || lower == "como estas" -> "¿Cómo Estás?"
+            lower == "cómo te llamas" || lower == "como te llamas" -> "¿Cómo Te Llamas?"
+            lower == "por qué" || lower == "por que" -> "¿Por Qué?"
+            lower == "qué pasó" || lower == "que paso" -> "¿Qué Pasó?"
+
+            // Palabras solas
+            lower == "dónde" || lower == "donde" -> "¿Dónde?"
+            lower == "quién" || lower == "quien" -> "¿Quién?"
+            lower == "quieres" -> "¿Quieres?" // No pasa a lower ya que no lleva acento. Está normal
+            lower == "cuándo" || lower == "cuando" -> "¿Cuándo?"
+            lower == "cuánto" || lower == "cuanto" -> "¿Cuánto?"
+            lower == "cuál" || lower == "cual" -> "¿Cuál?"
+            lower == "cómo" || lower == "como" -> "¿Cómo?"
+            lower == "qué" || lower == "que" -> "¿Qué?"
+
+            // Si la palabra no es una pregunta, se devuelve sin cambios.
+            else -> str
+        }
     }
 
     // Juan Colon y Victor
