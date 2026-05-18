@@ -22,7 +22,9 @@ class AboutUsActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
 
         // Declarando el nav home
+        // Variable navView es de ver la navegación (el menú)
         val navView: NavigationView = findViewById(R.id.nav_view)
+        // Variable botón para abrir la navegación (el menú)
         val btnOpenDrawer: ImageButton = findViewById(R.id.btn_open_drawer)
 
         navView.setCheckedItem(R.id.nav_about_us)

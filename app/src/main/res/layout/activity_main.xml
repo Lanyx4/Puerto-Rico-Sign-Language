@@ -35,7 +35,10 @@ Ahora este es el nuevo "padre"-->
             android:background="@color/colorPrimary"
             app:layout_constraintTop_toTopOf="parent">
 
-        <!--Melanie-->
+        <!--Melanie:
+
+        Banner rojo.
+        Image Button es el menú y Image View es el logo blanco de sagrado.-->
 
             <ImageButton
                 android:id="@+id/btn_open_drawer"
@@ -56,6 +59,7 @@ Ahora este es el nuevo "padre"-->
                 android:scaleType="fitCenter"
                 android:src="@drawable/sagrado_blanco" />
         </FrameLayout>
+        <!-- Melanie:  Hasta aquí termina lo que hice-->
 
         <AutoCompleteTextView
             android:id="@+id/searchEditText"
