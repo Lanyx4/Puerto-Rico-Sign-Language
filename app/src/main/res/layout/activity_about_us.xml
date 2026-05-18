@@ -106,6 +106,14 @@ Diseño del AboutUsActivity-->
             android:textColor="@color/black"
             android:lineSpacingExtra="8dp" />
     </LinearLayout>
+
+        <!-- Es el espacio abajo, que va después del bloque gris -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="40dp"/>
+
     </LinearLayout>
 </ScrollView>
 
