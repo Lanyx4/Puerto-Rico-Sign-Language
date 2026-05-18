@@ -102,7 +102,8 @@ class MainActivity : AppCompatActivity() {
         "tu" to "tú"
     )
 
-    // Melanie: Mapa de palabras, pero solo para los números
+    // Melanie: Mapa de números a palabras.
+    // Permite que el usuario, por ejemplo: escriba "50" y encuentre el GIF "Cincuenta".
     private val numberDictionary = mapOf(
         "1" to "uno",
         "2" to "dos",
@@ -250,6 +251,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /*
+        La siguiente función es para cargar todos los recursos que terminan en .gif
+        de la carpeta Drawable que se almacenará en "availableGifs" signandole un ID.
+     */
     private fun loadAvailableGifs() {
         try {
             val drawableFields = R.drawable::class.java.fields
@@ -275,6 +280,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /*
+        Verifica cada uno de los recursos de la carpeta drawable
+        es un GIF, comprobando que su ruta termine en .gif
+     */
     private fun isLikelyGif(res: Resources, resourceId: Int): Boolean {
         try {
             val value = TypedValue()
@@ -294,6 +303,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /* Toma los nombres de todos los GIFs disponibles, los ordena alfabéticamente,
+        y los utiliza como sugerencias en la barra de búsqueda.
+        Muestra máximo 5 sugerencias a la vez.
+    */
     private fun setupAutocomplete() {
         // Get all display names for autocomplete suggestions
         val suggestions = availableGifs.keys.toList().sorted()

@@ -317,8 +317,9 @@ class DictionaryActivity : AppCompatActivity() {
 
         val displayWords = normalizedWords
             .map { denormalizeString(it) }
-            // El sortedWith ordena la versión sin acento de "el", pero muestra
-            // la versión correcta en pantalla "él".
+            // El sortedWith ordena las palabras y frases con reglas o criterios personalizados.
+            // Con el compareBy, lo compara con la versión normalizada, para evitar que cualquier
+            // palabra que lleve acento en la primera letra esté al final de la lista.
             .sortedWith(compareBy { normalizeString(it) })
 
         recyclerView.adapter = DictionaryAdapter(displayWords)
